@@ -38,9 +38,6 @@ public class PersonEntity {
     private String emailId;
     @Column(name = "phone_no")
     private Integer phoneNo;
-    private boolean expired = Boolean.FALSE;
-    @Column(name = "expiredDate")
-    private Integer expired_date;
     private boolean active = Boolean.TRUE;
 
     @OneToOne( fetch =FetchType.LAZY,mappedBy = "personEntity")

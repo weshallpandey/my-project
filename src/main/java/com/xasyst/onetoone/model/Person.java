@@ -28,8 +28,5 @@ public class Person {
     private String emailId;
     private Integer phoneNo;
     private boolean active;
-    @Size(max = 255, message = "Photo URL maximum 255 character")
-    private String photoUrl;
-    private boolean expired;
-    private Integer expired_date;
+
 }
