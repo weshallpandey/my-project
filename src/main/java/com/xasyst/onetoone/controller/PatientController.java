@@ -11,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 public class PatientController {
@@ -26,24 +28,28 @@ public class PatientController {
         PatientResponse patientResponse = patientService.createPatient(patient);
         return new ResponseEntity<>(patientResponse, HttpStatus.CREATED);
     }
-//    @GetMapping(value ="/persons/{personId}",produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<Patient> getPersonById(@PathVariable Long personId){
-//        Patient patient = patientService.getPersonById(personId);
-//        return new ResponseEntity<>(patient,HttpStatus.FOUND);
+    @GetMapping(value ="/patients/{patientId}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Patient> getPatientById(@PathVariable Long patientId){
+        Patient patient = patientService.getPatientById(patientId);
+        return new ResponseEntity<>(patient,HttpStatus.OK);
+    }
+//    @GetMapping(path = "/persons", produces = MediaType.APPLICATION_JSON_VALUE)
+//    private ResponseEntity<List<Patient>> getAllPatients() {
+//        List<Patient> patientList = patientService.getAllPatients();
+//        return new ResponseEntity<>(patientList, HttpStatus.OK);
+//
 //    }
 
+    @ApiResponse(responseCode = "200", description = "Success")
+    @ApiResponse(responseCode = "400", description = "Invalid request")
+    @ApiResponse(responseCode = "404", description = "Not found")
+    @ApiResponse(responseCode = "500", description = "System error")
+    @PutMapping(path = "/patients/{patientId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    private ResponseEntity<String> updatePerson(@PathVariable Long patientId, @RequestBody Patient patient) {
+        patientService.updatePerson(patientId, patient);
+        return new ResponseEntity("Person updated successfully", HttpStatus.OK);
+    }
 
-//    @GetMapping("/persons")
-//    public List<Patient>getAllPersons(){
-//        return patientService.getAllPersons();
-//    }
-//    @PutMapping(value = "/person/{personId}")
-//    public ResponseEntity<Patient> updatePerson(@PathVariable Long personId, @RequestBody Patient patient){
-//        Patient personRequests = patientService.updatePerson(personId, patient);
-//        return new ResponseEntity<>(personRequests,HttpStatus.ACCEPTED);
-//    }
-//
-//
 
     @ApiResponse(responseCode = "200", description = "Success")
     @ApiResponse(responseCode = "400", description = "Invalid request")

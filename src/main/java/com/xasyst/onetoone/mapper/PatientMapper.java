@@ -13,5 +13,7 @@ public interface PatientMapper {
 
     PatientEntity toEntity(Patient patient);
 
+    List<Patient> entityToModel(List<PatientEntity> patientEntities);
+
     Patient toModel(PatientEntity patientEntity);
 }

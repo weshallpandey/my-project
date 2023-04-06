@@ -32,15 +32,15 @@ public class PersonEntity {
     private String birthSex;
     @Column(name = "marital_status")
     private String maritalStatus;
-//    @Column(name = "photo_url")
-//    private String photoUrl;
+    @Column(name = "photo_url")
+    private String photoUrl;
     @Column(name = "email_id")
     private String emailId;
     @Column(name = "phone_no")
     private Integer phoneNo;
-//    private boolean expired;
-//    @Column(name = "expiredDate")
-//    private Integer expired_date;
+    private boolean expired = Boolean.FALSE;
+    @Column(name = "expiredDate")
+    private Integer expired_date;
     private boolean active = Boolean.TRUE;
 
     @OneToOne( fetch =FetchType.LAZY,mappedBy = "personEntity")
